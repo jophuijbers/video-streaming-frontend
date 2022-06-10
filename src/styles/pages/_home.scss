@@ -1,0 +1,9 @@
+.home-page {
+  .home-page__grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--md);
+    row-gap: var(--md);
+  }
+}

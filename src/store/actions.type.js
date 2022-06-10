@@ -1,0 +1,15 @@
+// AUTH
+export const LOGIN = 'login'
+export const LOGOUT = 'logout'
+export const CHECK_AUTH = 'checkAuth'
+
+// USERS
+export const FETCH_USERS = 'fetchUsers'
+export const CREATE_USER = 'createUser'
+export const DELETE_USER = 'deleteUser'
+
+// UPLOADS
+export const FETCH_UPLOADS = 'fetchUploads'
+export const SEARCH_UPLOADS = 'searchUploads'
+export const FETCH_UPLOAD = 'fetchUpload'
+export const UPLOAD = 'upload'

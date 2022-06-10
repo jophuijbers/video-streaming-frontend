@@ -1,0 +1,14 @@
+.admin-page {
+  display: flex;
+  justify-content: center;
+
+  .create-user {
+    min-width: 25%;
+    margin-right: var(--sm);
+  }
+
+  .user-list {
+    min-width: 50%;
+    margin-left: var(--sm);
+  }
+}
