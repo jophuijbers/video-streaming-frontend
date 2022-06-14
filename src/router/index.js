@@ -36,6 +36,11 @@ const routes = [
                 component: () => import('../pages/Upload')
             },
             {
+                path: '/edit/:id',
+                name: 'edit',
+                component: () => import('../pages/Edit')
+            },
+            {
                 path: '/admin',
                 name: 'admin',
                 component: () => import('../pages/Admin')
