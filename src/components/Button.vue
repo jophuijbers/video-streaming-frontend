@@ -1,5 +1,5 @@
 <template>
-  <button @click="submit" type="button" class="button">
+  <button @click="submit" type="submit" class="button">
     <div v-if="loadingState" class="spinner"></div>
     <span v-if="loadingState">Loading...</span>
     <slot v-else></slot>

@@ -20,7 +20,7 @@
         <Button @submit="createUser">Create</Button>
       </div>
     </div>
-    <div class="user-list">
+    <div class="table-container">
       <table>
         <tr>
           <th>ID</th>

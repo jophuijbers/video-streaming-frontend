@@ -1,0 +1,46 @@
+.watch {
+
+  .info {
+    padding: var(--sm);
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .title-wrapper {
+      display: flex;
+      align-items: baseline;
+
+      overflow: hidden;
+
+      .title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .edit {
+      display: flex;
+
+      margin-left: var(--md);
+
+      img {
+        cursor: pointer;
+        width: var(--md);
+
+        filter: var(--filter-text-color-dark);
+
+        &:first-child {
+          margin-right: var(--md);
+        }
+        &:hover {
+          filter: var(--filter-text-color);
+        }
+      }
+    }
+  }
+}
