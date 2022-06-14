@@ -1,14 +1,18 @@
+@import "../variables/breakpoints";
+
 .admin-page {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  column-gap: var(--md);
+  row-gap: var(--md);
 
-  .create-user {
-    min-width: 25%;
-    margin-right: var(--sm);
+  @media (max-width: $mobile-breakpoint) {
+    grid-template-columns: 100%;
   }
-
-  .user-list {
-    min-width: 50%;
-    margin-left: var(--sm);
+  @media (min-width: $mobile-breakpoint) {
+    grid-template-columns: 100%;
+  }
+  @media (min-width: $tablet-breakpoint) {
+    grid-template-columns: 40% 60%;
   }
 }

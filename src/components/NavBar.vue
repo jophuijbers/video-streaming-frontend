@@ -3,11 +3,11 @@
     <div class="nav-bar__content">
       <div class="nav-bar__main">
         <router-link :to="{ name: 'home' }">
-          <img src="logo.png" alt="">
-          <span class="text-xl bold">enseHub</span>
+          <img src="logo.svg" alt="">
         </router-link>
       </div>
-      <div class="nav-bar__items">
+      <img @click="onHamburgerClick" ref="hamburger" src="icons/bars.svg" class="hamburger" alt="">
+      <div class="nav-bar__items" :class="{'dropdown': showDropdown}">
         <div v-if="user.isAdmin" class="nav-bar__items__link">
           <router-link :to="{ name: 'upload' }">Upload</router-link>
         </div>
@@ -28,7 +28,20 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "NavBar",
+  data() {
+    return {
+      showDropdown: false
+    }
+  },
+  watch: {
+    $route() {
+      this.showDropdown = false
+    }
+  },
   methods: {
+    onHamburgerClick() {
+      this.showDropdown = !this.showDropdown
+    },
     logout() {
       this.$store.dispatch(LOGOUT)
       this.$router.push({ name: 'login' })

@@ -1,10 +1,9 @@
 <template>
   <div class="video-card">
-    <p class="video-card__title text-md bold">{{ item.name }}</p>
-    <img :src="item.imagePath" alt="" class="video-card__image">
+    <img :src="item.imagePath" alt="" class="video-card__image" draggable="false">
     <div class="video-card__info">
-      <p class="text-sm">{{ item.creator.username }}</p>
-      <span class="text-sm">{{ item.duration || item.length + ' episodes' }}</span>
+      <p class="video-card__info__title bold">{{ item.name }}</p>
+      <p class="video-card__info__length text-xs text-dark">{{ getLength }}</p>
     </div>
   </div>
 </template>
@@ -12,7 +11,15 @@
 <script>
 export default {
   name: "VideoCard",
-  props: ['item']
+  props: ['item'],
+  computed: {
+    getLength() {
+      if (this.item.videos.length > 1) {
+        return this.item.length + 'ep'
+      }
+      return this.item.videos[0].duration
+    }
+  }
 }
 </script>
 

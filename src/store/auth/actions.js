@@ -12,15 +12,16 @@ const actions = {
         await ApiService.setHeader()
     },
     async [CHECK_AUTH](context) {
-        if (getToken()) {
-            if (!context.getters.isAuthenticated) {
-                await ApiService.setHeader()
-                const { data } = await ApiService.get('users/me')
-                context.commit(SET_AUTH, data.user)
-
-                saveToken(data.token)
-                await ApiService.setHeader()
-            }
+        if (!getToken()) return context.commit(PURGE_AUTH)
+        if (!context.getters.isAuthenticated) {
+            await ApiService.setHeader()
+            await ApiService.get('users/me')
+                .then(({ data }) => {
+                    context.commit(SET_AUTH, data.user)
+                })
+                .catch(() => {
+                    context.commit(PURGE_AUTH)
+                })
         }
     },
     [LOGOUT](context) {

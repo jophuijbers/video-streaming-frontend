@@ -1,3 +1,5 @@
+@import "../variables/breakpoints";
+
 .nav-bar {
   z-index: 999;
   position: fixed;
@@ -5,12 +7,13 @@
 
   background-color: var(--card-color);
   box-shadow: 0 9px 25px -5px rgba(0, 0, 0, .9);
-  padding: var(--md) var(--xl);
+  padding: var(--md) 0;
 
   .nav-bar__content {
     width: 100%;
     max-width: var(--content-width);
     margin: 0 auto;
+    padding: 0 var(--md);
 
     display: flex;
     align-items: center;
@@ -24,33 +27,63 @@
 
       color: var(--text-color);
       text-decoration: none;
+
       img {
+        filter: var(--filter-text-color);
         object-fit: contain;
-        height: 45px;
+        height: var(--xl);
       }
     }
   }
 
   .nav-bar__items {
-    display: flex;
-    flex-direction: row;
+    a, p {
+      cursor: pointer;
+      color: var(--text-color);
+      text-decoration: none;
 
-    .nav-bar__items__link {
-      margin-left: var(--xl);
-
-      a, p {
-        cursor: pointer;
-        color: var(--text-color);
-        text-decoration: none;
-
-        &:hover {
-          border-bottom: 1px solid var(--text-color);
-        }
-      }
-
-      .router-link-active {
+      &:hover {
         border-bottom: 1px solid var(--text-color);
       }
+    }
+
+    .router-link-active {
+      border-bottom: 1px solid var(--text-color);
+    }
+
+    @media (min-width: $mobile-breakpoint) {
+      display: flex;
+      flex-direction: row;
+
+      .nav-bar__items__link {
+        margin-left: var(--xl);
+      }
+    }
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+  .dropdown {
+    display: block;
+    width: 100%;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: var(--nav-height);
+    background-color: var(--bg-color);
+
+    .nav-bar__items__link {
+      padding: var(--md) var(--lg) var(--md) var(--md);
+      border-bottom: 1px solid var(--card-color);
+    }
+  }
+  .hamburger {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    filter: var(--filter-text-color);
+    @media (min-width: $mobile-breakpoint) {
+      display: none;
     }
   }
 }
