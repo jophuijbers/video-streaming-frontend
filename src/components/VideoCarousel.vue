@@ -8,98 +8,91 @@
       <div class="wrapper">
         <transition :name="transition">
           <div ref="grid" :key="indexes[0]" class="video-grid">
-            <VideoCard
-                v-for="index in indexes"
-                :key="index"
-                @click.native="goToVideoPage(videos[index])"
-                :item="videos[index]"
-            />
+            <VideoCard v-for="index in indexes" :key="index" @click.native="goToVideoPage(videos[index])" :item="videos[index]" />
           </div>
         </transition>
-        <button @click="shiftLeft" class="prev" ref="prev"><img src="icons/chevron-left.svg" alt=""></button>
-        <button @click="shiftRight" class="next" ref="next"><img src="icons/chevron-right.svg" alt=""></button>
+        <button @click="shiftLeft" class="prev" ref="prev"><img src="icons/chevron-left.svg" alt="" /></button>
+        <button @click="shiftRight" class="next" ref="next"><img src="icons/chevron-right.svg" alt="" /></button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {FETCH_UPLOADS_WITH_TAG} from "../store/actions.type";
+import { FETCH_UPLOADS_WITH_TAG } from "../store/actions.type";
 import VideoCard from "./VideoCard";
 
 export default {
   name: "VideoCarrousel",
-  components: {VideoCard},
-  props: ['title', 'tag'],
+  components: { VideoCard },
+  props: ["title", "tag"],
   data() {
     return {
       videos: null,
       indexes: [],
-      transition: ''
-    }
+      transition: "",
+    };
   },
   async mounted() {
-    this.videos = await this.$store.dispatch(FETCH_UPLOADS_WITH_TAG, this.tag)
+    this.videos = await this.$store.dispatch(FETCH_UPLOADS_WITH_TAG, this.tag);
     if (this.showCarousel) {
-      setTimeout(()=>{
-        this.$nextTick(()=>{
-          this.setIndexes()
-        })
-      }, 0)
+      setTimeout(() => {
+        this.$nextTick(() => {
+          this.setIndexes();
+        });
+      }, 0);
       window.addEventListener("resize", this.setIndexes);
     }
   },
   methods: {
     setIndexes() {
-      const grid = this.$refs.grid
-      const columnCount = window.getComputedStyle(grid).gridTemplateColumns.split(' ').length
-      this.indexes = Array.from({length: columnCount}, (v, i) => i)
+      const grid = this.$refs.grid;
+      const columnCount = window.getComputedStyle(grid).gridTemplateColumns.split(" ").length;
+      this.indexes = Array.from({ length: columnCount }, (v, i) => i);
     },
     shiftLeft() {
-      this.hideButtons()
-      this.transition = 'slide-left'
-      const prev = []
-      let index = this.indexes[0] - this.indexes.length
+      this.hideButtons();
+      this.transition = "slide-left";
+      const prev = [];
+      let index = this.indexes[0] - this.indexes.length;
       for (let i = 0; i < this.indexes.length; i++) {
-        if(index <= 0) index += this.videos.length
-        if(index >= this.videos.length) index = 0
-        prev.push(index)
-        index++
+        if (index <= 0) index += this.videos.length;
+        if (index >= this.videos.length) index = 0;
+        prev.push(index);
+        index++;
       }
-      this.indexes = prev
+      this.indexes = prev;
     },
     shiftRight() {
-      this.hideButtons()
-      this.transition = 'slide-right'
-      const next = []
-      let lastIndex = this.indexes[this.indexes.length -1]
+      this.hideButtons();
+      this.transition = "slide-right";
+      const next = [];
+      let lastIndex = this.indexes[this.indexes.length - 1];
       for (let i = 0; i < this.indexes.length; i++) {
-        lastIndex++
-        if(lastIndex >= this.videos.length) lastIndex = 0
-        next.push(lastIndex)
+        lastIndex++;
+        if (lastIndex >= this.videos.length) lastIndex = 0;
+        next.push(lastIndex);
       }
-      this.indexes = next
+      this.indexes = next;
     },
     goToVideoPage(video) {
-      this.$router.push({name: 'watch', query: {v: video.id}})
+      this.$router.push({ name: "watch", query: { v: video.id } });
     },
     hideButtons() {
-      this.$refs.next.style.display = 'none'
-      this.$refs.prev.style.display = 'none'
-      setTimeout(()=>{
-        this.$refs.next.style.display = 'block'
-        this.$refs.prev.style.display = 'block'
-      }, 1200)
-    }
+      this.$refs.next.style.display = "none";
+      this.$refs.prev.style.display = "none";
+      setTimeout(() => {
+        this.$refs.next.style.display = "block";
+        this.$refs.prev.style.display = "block";
+      }, 1200);
+    },
   },
   computed: {
     showCarousel() {
-      return this.videos && this.videos.length
-    }
-  }
-}
+      return this.videos && this.videos.length;
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

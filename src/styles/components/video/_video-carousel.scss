@@ -9,12 +9,14 @@
     border-radius: var(--sm);
 
     &:hover {
-      .next, .prev {
-        opacity: .8;
+      .next,
+      .prev {
+        opacity: 0.8;
       }
     }
 
-    .next, .prev {
+    .next,
+    .prev {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);

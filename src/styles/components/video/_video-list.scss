@@ -1,0 +1,31 @@
+.video-list {
+  padding: var(--md);
+  border-radius: var(--md);
+  background-color: var(--card-color);
+  box-shadow: var(--card-shadow);
+
+  .video-list__item {
+    cursor: pointer;
+    display: flex;
+    padding: var(--md);
+    border-radius: var(--md);
+    background-color: var(--bg-color);
+
+    ~.striped {
+      background-color: var(--card-color);
+    }
+
+    &:hover, ~.active {
+      color: var(--active-color);
+      text-decoration: underline;
+    }
+
+    .video-list__item__count {
+      margin-right: var(--sm);
+    }
+
+    .video-list__item__time {
+      margin-left: auto;
+    }
+  }
+}

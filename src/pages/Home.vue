@@ -1,8 +1,7 @@
 <template>
   <div class="home-page">
-    <input v-model="searchValue" placeholder="Movie title..." class="search-bar" type="text">
+    <input v-model="searchValue" placeholder="Movie title..." class="search-bar" type="text" />
     <div v-if="!isLoading">
-
       <VideoCarrousel v-if="!searchValue" title="Nederlandse klassiekers" tag="Nederlands" />
 
       <VideoCarrousel v-if="!searchValue" title="War movies/series" tag="War" />
@@ -12,11 +11,7 @@
       <div>
         <p class="text-lg bold mb-2">All movies</p>
         <div class="video-grid">
-          <VideoCard
-              v-for="upload in uploads" :key="upload.id"
-              @click.native="goToVideoPage(upload)"
-              :item="upload"
-          />
+          <VideoCard v-for="upload in uploads" :key="upload.id" @click.native="goToVideoPage(upload)" :item="upload" />
         </div>
       </div>
     </div>
@@ -24,37 +19,37 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import VideoCard from "@/components/VideoCard";
-import {FETCH_UPLOADS} from "@/store/actions.type";
+import { FETCH_UPLOADS } from "@/store/actions.type";
 import VideoCarrousel from "../components/VideoCarousel";
 
 export default {
   name: "Home",
-  components: {VideoCarrousel, VideoCard},
+  components: { VideoCarrousel, VideoCard },
   data() {
     return {
       isLoading: false,
-      searchValue: null
-    }
+      searchValue: null,
+    };
   },
   async created() {
-    this.isLoading = true
-    await this.$store.dispatch(FETCH_UPLOADS, {})
-    this.isLoading = false
+    this.isLoading = true;
+    await this.$store.dispatch(FETCH_UPLOADS, {});
+    this.isLoading = false;
   },
   methods: {
     goToVideoPage(video) {
-      this.$router.push({name: 'watch', query: {v: video.id}})
-    }
+      this.$router.push({ name: "watch", query: { v: video.id } });
+    },
   },
   computed: {
-    ...mapGetters(['uploads'])
+    ...mapGetters(["uploads"]),
   },
   watch: {
     async searchValue() {
-      await this.$store.dispatch(FETCH_UPLOADS, this.searchValue)
-    }
-  }
-}
+      await this.$store.dispatch(FETCH_UPLOADS, this.searchValue);
+    },
+  },
+};
 </script>
