@@ -1,6 +1,6 @@
 <template>
   <div class="login-page">
-    <div class="form">
+    <form @submit.prevent="submit" class="form">
       <p class="text-lg bold">Log in</p>
 
       <div class="input-group">
@@ -13,8 +13,8 @@
         <input v-model="password" type="password" placeholder="password1" class="input-group__input">
       </div>
 
-      <Button @submit="submit" :loading-state="isLoading">Login</Button>
-    </div>
+      <Button :loading-state="isLoading">Login</Button>
+    </form>
   </div>
 </template>
 
@@ -34,14 +34,17 @@ export default {
   },
   methods: {
     async submit() {
-      this.isLoading = true
-      await this.$store.dispatch(LOGIN, {
-        username: this.username,
-        password: this.password
-      }).then(() => {
-        this.$router.push({ name: 'home'})
-      })
-      this.isLoading = true
+      if(this.username && this.password) {
+        this.isLoading = true
+        await this.$store.dispatch(LOGIN, {
+          username: this.username,
+          password: this.password
+        }).then(() => {
+          this.$router.push({ name: 'home'})
+        }).catch(() => {
+          this.isLoading = false
+        })
+      }
     }
   }
 }

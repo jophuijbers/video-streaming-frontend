@@ -1,16 +1,25 @@
+@import "../variables/breakpoints";
+
 .upload-page {
-  display: flex;
-  justify-content: center;
-
-  .form {
-    height: 100%;
+  width: 40%;
+  @media (max-width: $tablet-breakpoint) {
+    width: 100%;
   }
 
-  .with-files {
-    margin-right: var(--sm);
-  }
+  .upload-list {
+    .upload-list__item {
+      display: flex;
+      align-items: center;
+      padding-right: var(--md);
 
-  .without-files {
-    margin-left: var(--sm);
+      .upload-list__item__action {
+        cursor: pointer;
+        background: url(/icons/xmark-solid.svg) no-repeat;
+        filter: var(--filter-text-color);
+        height: var(--lg);
+        width: var(--lg);
+        margin-left: var(--md);
+      }
+    }
   }
 }

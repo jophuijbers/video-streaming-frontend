@@ -1,38 +1,57 @@
 <template>
-  <div class="watch">
-    <div class="header">
-      <p class="text-lg bold">{{ upload.name }}</p>
-      <p class="text-dark">{{ upload.length }}</p>
+  <div>
+    <div v-if="!isLoading" class="watch">
+      <div class="header">
+        <p class="text-lg bold">{{ current.name }}</p>
+        <p class="text-dark">{{ current.duration }}</p>
+      </div>
+
+      <video :src="current.path" controls ref="video-player" class="video-player" />
+
+      <div class="tags-list">
+        <span v-for="(tag, index) in upload.tags" :key="index" class="tag">{{ tag }}</span>
+<!--        <span class="tag"><img src="icons/xmark-solid.svg" alt=""></span>-->
+      </div>
+
+      <table v-if="upload.length > 1" class="mt-3">
+        <tr>
+          <th class="grow text-lg">{{ upload.name }}</th>
+          <th class="text-dark">{{ upload.videos.length }}ep</th>
+        </tr>
+        <tr v-for="(video, index) in upload.videos" :key="index" @click="selectVideo(video)">
+          <td class="hover">
+            <p>{{ video.name }}</p>
+          </td>
+          <td class="text-dark">
+            <p>{{ video.duration }}</p>
+          </td>
+        </tr>
+      </table>
     </div>
-
-    <video :src="source" controls ref="video-player" class="video-player" />
-
-    <EpisodeList v-if="upload.length > 1" :episodes="upload.videos" @selectEpisode="selectVideo" />
   </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
-import EpisodeList from "@/components/EpisodeList";
 import {FETCH_UPLOAD} from "@/store/actions.type";
 
 export default {
   name: "Watch",
-  components: {EpisodeList},
   data() {
     return {
-        source: null
+      isLoading: false,
+      current: null
     }
   },
   async created() {
     this.isLoading = true
     await this.$store.dispatch(FETCH_UPLOAD, this.$route.query.v)
-    this.source = this.upload.videos[0].path
+    this.current = this.upload.videos[0]
     this.isLoading = false
   },
   methods: {
     selectVideo(video) {
-      this.source = video.path
+      this.current = video
       this.$refs['video-player'].autoplay = true
       window.scrollTo(0,0)
     }

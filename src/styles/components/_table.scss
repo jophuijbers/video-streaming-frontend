@@ -1,8 +1,14 @@
+.table-container {
+  overflow-x: auto;
+  border-radius: var(--md);
+}
 table {
+  width: 100%;
+
   border-collapse: separate;
   border-spacing: 0;
 
-  padding: var(--md);
+  padding: var(--sm);
   border-radius: var(--md);
   background-color: var(--card-color);
   box-shadow: var(--card-shadow);
@@ -15,8 +21,17 @@ table {
       text-align: left;
     }
 
+    .hover:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
     &:nth-child(odd) {
       background-color: var(--bg-color);
+    }
+
+    th:last-child {
+      text-align: right;
     }
 
     &:first-child th:first-child { border-top-left-radius: 10px; }

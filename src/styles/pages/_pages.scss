@@ -1,4 +1,3 @@
-@import 'home';
 @import 'upload';
 @import 'login';
 @import 'admin';
@@ -9,5 +8,5 @@
 
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 120px 20px 60px 20px;
+  padding: calc(77px + var(--lg)) var(--md) var(--lg) var(--md);
 }

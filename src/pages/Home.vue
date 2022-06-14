@@ -1,12 +1,24 @@
 <template>
-  <div v-if="!isLoading" class="home-page">
-    <input v-model="searchValue" class="search-bar" type="text">
-    <div class="home-page__grid">
-      <VideoCard
-          v-for="upload in uploads" :key="upload.id"
-          @click.native="goToVideoPage(upload)"
-          :item="upload"
-      />
+  <div class="home-page">
+    <input v-model="searchValue" placeholder="Movie title..." class="search-bar" type="text">
+    <div v-if="!isLoading">
+
+      <VideoCarrousel v-if="!searchValue" title="Nederlandse klassiekers" tag="Nederlands" />
+
+      <VideoCarrousel v-if="!searchValue" title="War movies/series" tag="War" />
+
+      <VideoCarrousel v-if="!searchValue" title="Cartoons" tag="Cartoon" />
+
+      <div>
+        <p class="text-lg bold mb-2">All movies</p>
+        <div class="video-grid">
+          <VideoCard
+              v-for="upload in uploads" :key="upload.id"
+              @click.native="goToVideoPage(upload)"
+              :item="upload"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -15,10 +27,11 @@
 import {mapGetters} from "vuex";
 import VideoCard from "@/components/VideoCard";
 import {FETCH_UPLOADS} from "@/store/actions.type";
+import VideoCarrousel from "../components/VideoCarousel";
 
 export default {
   name: "Home",
-  components: {VideoCard},
+  components: {VideoCarrousel, VideoCard},
   data() {
     return {
       isLoading: false,
@@ -27,7 +40,7 @@ export default {
   },
   async created() {
     this.isLoading = true
-    await this.$store.dispatch(FETCH_UPLOADS)
+    await this.$store.dispatch(FETCH_UPLOADS, {})
     this.isLoading = false
   },
   methods: {
@@ -38,10 +51,10 @@ export default {
   computed: {
     ...mapGetters(['uploads'])
   },
-  // watch: {
-  //   async searchValue() {
-  //     await this.$store.dispatch(SEARCH_VIDEOS, this.searchValue)
-  //   }
-  // }
+  watch: {
+    async searchValue() {
+      await this.$store.dispatch(FETCH_UPLOADS, this.searchValue)
+    }
+  }
 }
 </script>

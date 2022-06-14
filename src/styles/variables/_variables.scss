@@ -12,10 +12,14 @@
   --text-color-dark: rgb(109, 109, 109);
 
   --content-width: 1200px;
+  --mobile: 500px;
+  --tablet: 800px;
 
   --sm: 8px;
   --md: 16px;
   --lg: 24px;
   --xl: 32px;
   --xxl: 64px;
+
+  --filter-text-color: invert(94%) sepia(63%) saturate(1084%) hue-rotate(290deg) brightness(112%) contrast(118%);
 }

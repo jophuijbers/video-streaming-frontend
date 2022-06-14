@@ -7,6 +7,7 @@
           <span class="text-xl bold">enseHub</span>
         </router-link>
       </div>
+      <img ref="hamburger" src="icons/bars-solid.svg" class="hamburger" alt="">
       <div class="nav-bar__items">
         <div v-if="user.isAdmin" class="nav-bar__items__link">
           <router-link :to="{ name: 'upload' }">Upload</router-link>
@@ -28,6 +29,22 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "NavBar",
+  mounted() {
+    this.$refs['hamburger'].onclick = function() {
+      const items = document.getElementsByClassName('nav-bar__items')[0]
+      if (!items.style.display || items.style.display === 'none') {
+        items.classList.add('dropdown')
+        items.style.display = 'block'
+      } else {
+        items.classList.remove('dropdown')
+        items.style.display = 'none'
+      }
+      const dropdown = document.getElementsByClassName('dropdown')[0]
+      dropdown.onclick = function() {
+        dropdown.style.display = 'none'
+      }
+    }
+  },
   methods: {
     logout() {
       this.$store.dispatch(LOGOUT)
