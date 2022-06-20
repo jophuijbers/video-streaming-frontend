@@ -11,8 +11,8 @@
             <VideoCard v-for="index in indexes" :key="index" @click.native="goToVideoPage(videos[index])" :item="videos[index]" />
           </div>
         </transition>
-        <button @click="shiftLeft" class="prev" ref="prev"><img src="icons/chevron-left.svg" alt="" /></button>
-        <button @click="shiftRight" class="next" ref="next"><img src="icons/chevron-right.svg" alt="" /></button>
+        <button @click="shiftLeft" class="prev"><img src="icons/chevron-left.svg" alt="" /></button>
+        <button @click="shiftRight" class="next"><img src="icons/chevron-right.svg" alt="" /></button>
       </div>
     </div>
   </div>
@@ -35,14 +35,12 @@ export default {
   },
   async mounted() {
     this.videos = await this.$store.dispatch(FETCH_UPLOADS_WITH_TAG, this.tag);
-    if (this.showCarousel) {
-      setTimeout(() => {
-        this.$nextTick(() => {
-          this.setIndexes();
-        });
-      }, 0);
-      window.addEventListener("resize", this.setIndexes);
-    }
+    setTimeout(() => {
+      this.$nextTick(() => {
+        this.setIndexes();
+      });
+    }, 0);
+    window.addEventListener("resize", this.setIndexes);
   },
   methods: {
     setIndexes() {
@@ -51,7 +49,6 @@ export default {
       this.indexes = Array.from({ length: columnCount }, (v, i) => i);
     },
     shiftLeft() {
-      this.hideButtons();
       this.transition = "slide-left";
       const prev = [];
       let index = this.indexes[0] - this.indexes.length;
@@ -64,7 +61,6 @@ export default {
       this.indexes = prev;
     },
     shiftRight() {
-      this.hideButtons();
       this.transition = "slide-right";
       const next = [];
       let lastIndex = this.indexes[this.indexes.length - 1];
@@ -77,14 +73,6 @@ export default {
     },
     goToVideoPage(video) {
       this.$router.push({ name: "watch", query: { v: video.id } });
-    },
-    hideButtons() {
-      this.$refs.next.style.display = "none";
-      this.$refs.prev.style.display = "none";
-      setTimeout(() => {
-        this.$refs.next.style.display = "block";
-        this.$refs.prev.style.display = "block";
-      }, 1200);
     },
   },
   computed: {

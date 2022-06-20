@@ -8,9 +8,15 @@
 
       <video :src="current.path" controls ref="video-player" class="video-player" />
 
+      <div class="next-episode" v-if="upload.length > 1">
+        <p @click="selectPrevious" class="vorige">← Vorige aflevering</p>
+        <p class="volgende">Volgende aflevering →</p>
+      </div>
+
       <div class="tags-list">
+        Genre:
         <span v-for="(tag, index) in upload.tags" :key="index" class="tag">{{ tag }}</span>
-        <!--        <span class="tag"><img src="icons/xmark-solid.svg" alt=""></span>-->
+        <!--<span class="tag"><img src="icons/xmark-solid.svg" alt=""></span>-->
       </div>
 
       <table v-if="upload.length > 1" class="mt-3">
@@ -33,10 +39,9 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { FETCH_UPLOAD } from "@/store/actions.type";
-
+import { FETCH_UPLOAD } from "../store/actions.type";
 export default {
-  name: "Watch",
+  components: {},
   data() {
     return {
       isLoading: false,
@@ -47,6 +52,7 @@ export default {
     this.isLoading = true;
     await this.$store.dispatch(FETCH_UPLOAD, this.$route.query.v);
     this.current = this.upload.videos[0];
+    console.log(this.upload);
     this.isLoading = false;
   },
   methods: {
@@ -54,6 +60,12 @@ export default {
       this.current = video;
       this.$refs["video-player"].autoplay = true;
       window.scrollTo(0, 0);
+    },
+    selectPrevious() {
+      const index = this.upload.videos.indexOf(this.current);
+      if (index === 0) return;
+
+      this.selectVideo(this.upload.videos[index]);
     },
   },
   computed: {

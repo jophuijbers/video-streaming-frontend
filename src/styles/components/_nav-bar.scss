@@ -6,7 +6,7 @@
   width: 100%;
 
   background-color: var(--card-color);
-  box-shadow: 0 9px 25px -5px rgba(0, 0, 0, .9);
+  box-shadow: 0 9px 25px -5px rgba(0, 0, 0, 0.9);
   padding: var(--md) var(--xl);
 
   .nav-bar__content {
@@ -34,7 +34,8 @@
   }
 
   .nav-bar__items {
-    a, p {
+    a,
+    p {
       cursor: pointer;
       color: var(--text-color);
       text-decoration: none;

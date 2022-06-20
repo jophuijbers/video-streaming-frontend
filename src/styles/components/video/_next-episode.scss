@@ -1,0 +1,18 @@
+.next-episode {
+  display: flex;
+  margin-top: var(--md);
+  margin-bottom: 25px;
+  justify-content: space-between;
+
+  .volgende,
+  .vorige {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
+  .volgende:hover,
+  .vorige:hover {
+    color: var(--active-color);
+    cursor: pointer;
+  }
+}

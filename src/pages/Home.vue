@@ -1,10 +1,17 @@
 <template>
   <div class="home-page">
     <input v-model="searchValue" placeholder="Movie title..." class="search-bar" type="text" />
+    <div class="tagFilter" style="margin-bottom: 20px; display: flex">
+      <span>Genres:&nbsp;</span>
+      <span class="tags">War,&nbsp;</span>
+      <span class="tags">Comedy,&nbsp;</span>
+      <span class="tags">Nederlands,&nbsp;</span>
+      <span class="tags">Thriller,&nbsp;</span>
+      <span class="tags">Horror,&nbsp;</span>
+      <span class="tags">Dit is dummy data</span>
+    </div>
     <div v-if="!isLoading">
-      <VideoCarrousel v-if="!searchValue" title="Nederlandse klassiekers" tag="Nederlands" />
-
-      <VideoCarrousel v-if="!searchValue" title="War movies/series" tag="War" />
+      <VideoCarrousel title="Nederlandse klassiekers" tag="Nederlands" />
 
       <VideoCarrousel v-if="!searchValue" title="Cartoons" tag="Cartoon" />
 
@@ -17,7 +24,12 @@
     </div>
   </div>
 </template>
-
+<style>
+.tags:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+</style>
 <script>
 import { mapGetters } from "vuex";
 import VideoCard from "@/components/VideoCard";
@@ -48,7 +60,7 @@ export default {
   },
   watch: {
     async searchValue() {
-      await this.$store.dispatch(FETCH_UPLOADS, this.searchValue);
+      await this.$store.dispatch(FETCH_UPLOADS, { search: this.searchValue });
     },
   },
 };

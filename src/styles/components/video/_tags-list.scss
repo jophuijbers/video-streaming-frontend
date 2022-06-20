@@ -1,11 +1,8 @@
 .tags-list {
   margin-top: var(--md);
+  font-size: 0.75rem;
   .tag {
-    background-color: var(--card-color);
-    box-shadow: var(--card-shadow);
-    border-radius: var(--sm);
-    padding: var(--sm);
-
+    font-size: 0.75rem;
     img {
       width: var(--md);
       height: var(--md);

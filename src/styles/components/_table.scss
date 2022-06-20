@@ -16,7 +16,8 @@ table {
   tr {
     border-bottom: 1px solid var(--text-color);
 
-    td, th {
+    td,
+    th {
       padding: var(--md);
       text-align: left;
     }
@@ -24,6 +25,7 @@ table {
     .hover:hover {
       cursor: pointer;
       text-decoration: underline;
+      color: var(--active-color);
     }
 
     &:nth-child(odd) {
@@ -34,11 +36,19 @@ table {
       text-align: right;
     }
 
-    &:first-child th:first-child { border-top-left-radius: 10px; }
-    &:first-child th:last-child { border-top-right-radius: 10px; }
+    &:first-child th:first-child {
+      border-top-left-radius: 10px;
+    }
+    &:first-child th:last-child {
+      border-top-right-radius: 10px;
+    }
 
-    &:last-child td:first-child { border-bottom-left-radius: 10px; }
-    &:last-child td:last-child { border-bottom-right-radius: 10px; }
+    &:last-child td:first-child {
+      border-bottom-left-radius: 10px;
+    }
+    &:last-child td:last-child {
+      border-bottom-right-radius: 10px;
+    }
   }
 
   .grow {
