@@ -7,6 +7,7 @@ import router from './router'
 require('dotenv').config()
 
 import './styles/main.css'
+import '@vime/core/themes/default.css'
 
 Vue.prototype.$axios = axios
 Vue.prototype.$axios.defaults.baseURL = process.env.VUE_APP_API_URL || 'http://localhost:3000/api/'

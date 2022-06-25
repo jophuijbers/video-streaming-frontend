@@ -1,17 +1,11 @@
-.video-wrapper {
+.player {
   position: relative;
 
-  .video-player {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+  --vm-player-border-radius: var(--md);
+  --vm-player-box-shadow: var(--card-shadow);
 
-    border-radius: var(--md);
-    box-shadow: var(--card-shadow);
-    background-color: black;
-
-    &.ended {
-      opacity: 0.6;
-    }
+  &.ended {
+    opacity: 0.6;
   }
 
   .auto-play {
@@ -36,3 +30,4 @@
     }
   }
 }
+

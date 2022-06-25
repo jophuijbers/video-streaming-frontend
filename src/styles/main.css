@@ -147,20 +147,15 @@
   margin-bottom: var(--md);
 }
 
-.video-wrapper {
+.player {
   position: relative;
+  --vm-player-border-radius: var(--md);
+  --vm-player-box-shadow: var(--card-shadow);
 }
-.video-wrapper .video-player {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: var(--md);
-  box-shadow: var(--card-shadow);
-  background-color: black;
-}
-.video-wrapper .video-player.ended {
+.player.ended {
   opacity: 0.6;
 }
-.video-wrapper .auto-play {
+.player .auto-play {
   z-index: 999;
   position: absolute;
   top: 50%;
@@ -172,10 +167,10 @@
   background-color: var(--card-color);
   text-align: center;
 }
-.video-wrapper .auto-play .cancel {
+.player .auto-play .cancel {
   cursor: pointer;
 }
-.video-wrapper .auto-play .cancel:hover {
+.player .auto-play .cancel:hover {
   text-decoration: underline;
 }
 
