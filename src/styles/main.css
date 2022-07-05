@@ -253,6 +253,10 @@
   .video-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .video-carousel .wrapper .next,
+  .video-carousel .wrapper .prev {
+    opacity: 0.9;
+  }
 }
 @media (min-width: 576px) {
   .video-grid {
