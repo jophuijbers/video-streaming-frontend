@@ -57,7 +57,6 @@ export default {
       this.indexes = Array.from({length: columnCount}, (v, i) => i)
     },
     shiftLeft() {
-      this.hideButtons()
       this.transition = 'slide-left'
       const prev = []
       let index = this.indexes[0] - this.indexes.length
@@ -70,7 +69,6 @@ export default {
       this.indexes = prev
     },
     shiftRight() {
-      this.hideButtons()
       this.transition = 'slide-right'
       const next = []
       let lastIndex = this.indexes[this.indexes.length -1]

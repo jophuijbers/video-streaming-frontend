@@ -190,7 +190,7 @@
   border-radius: var(--sm);
 }
 .video-carousel .wrapper:hover .next, .video-carousel .wrapper:hover .prev {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 .video-carousel .wrapper .next, .video-carousel .wrapper .prev {
   position: absolute;
@@ -198,7 +198,8 @@
   transform: translateY(-50%);
   padding: 0 var(--md);
   margin: 0 var(--sm);
-  height: 100%;
+  height: 50px;
+  width: 50px;
   cursor: pointer;
   background-color: var(--bg-color);
   opacity: 0;
@@ -209,14 +210,12 @@
   height: var(--md);
 }
 .video-carousel .wrapper .next {
-  right: 0;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  right: 10px;
+  border-radius: 25px;
 }
 .video-carousel .wrapper .prev {
-  left: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  left: 10px;
+  border-radius: 25px;
 }
 .video-carousel .video-carousel__header,
 .video-carousel .video-grid {
