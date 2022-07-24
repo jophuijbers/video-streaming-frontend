@@ -53,6 +53,9 @@ table {
   }
 
   td {
+    white-space: nowrap;
+    overflow: hidden;
+
     .button {
       margin: -10px 0;
     }

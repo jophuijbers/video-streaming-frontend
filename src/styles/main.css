@@ -510,6 +510,10 @@ table .grow {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+table td {
+  white-space: nowrap;
+  overflow: hidden;
+}
 table td .button {
   margin: -10px 0;
 }

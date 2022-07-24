@@ -26,6 +26,7 @@
           <th>ID</th>
           <th class="grow">Username</th>
           <th>Role</th>
+          <th>Last login</th>
           <th></th>
         </tr>
         <tr v-for="(user, index) in users" :key="index">
@@ -37,6 +38,9 @@
           </td>
           <td>
             <p>{{ user.role }}</p>
+          </td>
+          <td>
+            <p>{{ user.lastLogin }}</p>
           </td>
           <td>
             <Button @submit="deleteUser(user)">Delete</Button>
