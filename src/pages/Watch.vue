@@ -27,20 +27,22 @@
         </div>
       </div>
 
-      <table v-if="upload.length > 1" class="videos mt-1">
-        <tr>
-          <th class="grow text-lg">{{ upload.name }}</th>
-          <th class="text-dark">{{ upload.videos.length }}ep</th>
-        </tr>
-        <tr v-for="(video, index) in upload.videos" :key="index" @click="selectVideo(video)">
-          <td class="hover" :class="{ 'selected': video.id === current.id }">
-            <p>{{ video.name }}</p>
-          </td>
-          <td class="text-dark">
-            <p>{{ video.duration }}</p>
-          </td>
-        </tr>
-      </table>
+      <div v-if="upload.length > 1" class="table-scroll-x">
+        <table class="mt-1">
+          <tr>
+            <th class="grow text-lg">{{ upload.name }}</th>
+            <th class="text-dark">{{ upload.videos.length }}ep</th>
+          </tr>
+          <tr v-for="(video, index) in upload.videos" :key="index" @click="selectVideo(video)">
+            <td class="hover" :class="{ 'selected': video.id === current.id }">
+              <p>{{ video.name }}</p>
+            </td>
+            <td class="text-dark">
+              <p>{{ video.duration }}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>

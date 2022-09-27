@@ -20,7 +20,8 @@
         <Button @submit="createUser">Create</Button>
       </div>
     </div>
-    <div class="table-container">
+
+    <div class="table-scroll-x">
       <table>
         <tr>
           <th>ID</th>

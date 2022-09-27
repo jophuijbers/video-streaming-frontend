@@ -457,7 +457,7 @@ input[type=file]::-webkit-file-upload-button {
   }
 }
 
-.table-container {
+.table-scroll-x {
   overflow-x: auto;
   border-radius: var(--md);
 }
