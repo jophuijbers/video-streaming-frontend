@@ -2,14 +2,13 @@
   <div class="home-page">
     <input v-model="searchValue" placeholder="Movie title..." class="search-bar" type="text">
     <div v-if="!isLoading">
-
-      <VideoCarrousel v-if="!searchValue" title="Recently added" tag="recent" />
-
-      <VideoCarrousel v-if="!searchValue" title="Nederlandse klassiekers" tag="Nederlands" />
-
-      <VideoCarrousel v-if="!searchValue" title="War movies/series" tag="War" />
-
-      <VideoCarrousel v-if="!searchValue" title="Cartoons" tag="Cartoon" />
+      <div v-if="!searchValue">
+        <VideoCarrousel
+          v-for="(item, n) in sections" :key="n"
+          :title="item.title"
+          :tag="item.tag"
+        />
+      </div>
 
       <div>
         <div class="mb-2">
@@ -18,9 +17,9 @@
         </div>
         <div class="video-grid">
           <VideoCard
-              v-for="upload in uploads" :key="upload.id"
-              @click.native="goToVideoPage(upload)"
-              :item="upload"
+            v-for="upload in uploads" :key="upload.id"
+            @click.native="goToVideoPage(upload)"
+            :item="upload"
           />
         </div>
       </div>
@@ -40,7 +39,18 @@ export default {
   data() {
     return {
       isLoading: false,
-      searchValue: null
+      searchValue: null,
+      sections: [
+        { title: 'Recently added', tag: 'recent' },
+        { title: 'Nederlands', tag: 'Nederlands' },
+        { title: 'War', tag: 'War' },
+        { title: 'Cartoons', tag: 'Cartoons' },
+        { title: 'Action', tag: 'Action' },
+        { title: 'Comedy', tag: 'Comedy' },
+        { title: 'Anime', tag: 'Anime' },
+        { title: 'Sci-fi', tag: 'Sci-fi' },
+        { title: 'Documentary', tag: 'Documentary' }
+      ]
     }
   },
   async created() {
