@@ -56,7 +56,7 @@ export default {
       if (this.name) formData.append('name', this.name)
       if (this.image) formData.append('image', this.image)
       if (this.tags) formData.append('tags', this.tags)
-      await this.$store.dispatch(PATCH_UPLOAD, {id: this.upload.id, formData}).then((video) => {
+      await this.$store.dispatch(PATCH_UPLOAD, {id: this.upload.id, payload: formData}).then((video) => {
         this.$router.push({name: 'watch', query: {v: video.id}})
       })
       this.isLoading = false
