@@ -1,6 +1,6 @@
 <template>
-  <div class="video-carousel">
-    <div v-if="showCarousel">
+  <div>
+    <div v-if="showCarousel" class="video-carousel">
       <div class="video-carousel__header mb-2">
         <span class="text-lg bold">{{ title }}</span>
         <span class="text-dark ml-1">{{ videos.length }}</span>
