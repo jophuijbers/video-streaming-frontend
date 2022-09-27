@@ -68,19 +68,10 @@
 }
 .watch .info .row {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.watch .info .title-wrapper {
-  display: flex;
   align-items: baseline;
-  overflow: hidden;
 }
-.watch .info .title-wrapper .title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.watch .info .video-buttons {
+  padding-top: var(--md);
 }
 .watch .info .edit {
   display: flex;

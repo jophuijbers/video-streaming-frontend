@@ -5,22 +5,11 @@
 
     .row {
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      align-items: center;
+      align-items: baseline;
     }
 
-    .title-wrapper {
-      display: flex;
-      align-items: baseline;
-
-      overflow: hidden;
-
-      .title {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+    .video-buttons {
+      padding-top: var(--md);
     }
 
     .edit {

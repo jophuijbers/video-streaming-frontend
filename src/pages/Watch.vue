@@ -6,25 +6,22 @@
 
       <div class="info">
         <div class="row">
-          <div class="title-wrapper">
-            <span class="title text-lg bold">{{ current.name }}</span>
-            <div v-if="user.isAdmin" class="edit">
-              <img @click="editVideo" src="icons/pen.svg" alt="">
-              <img @click="deleteVideo" src="icons/trash-can.svg" alt="">
-            </div>
+          <span class="text-lg bold">
+            {{ current.name }}
+          </span>
+          <div v-if="user.isAdmin" class="edit">
+            <img @click="editVideo" src="icons/pen.svg" alt="">
+            <img @click="deleteVideo" src="icons/trash-can.svg" alt="">
           </div>
-
-          <VideoButtons v-if="upload.length > 1" @prev="selectPrev" @next="selectNext" hide="" />
         </div>
 
         <p class="text-md text-dark">Duration: {{ current.duration }}</p>
+        <p v-if="upload.tags.length" class="text-md text-dark">
+          <span>Tags: </span>
+          <span v-for="(tag, index) in upload.tags" :key="index">{{ tag }}{{ index === upload.tags.length-1 ? '' : ', ' }}</span>
+        </p>
 
-        <div class="row">
-          <p class="text-md text-dark">
-            <span>Genres: </span>
-            <span v-for="(tag, index) in upload.tags" :key="index">{{ tag }}{{ index === upload.tags.length-1 ? '' : ', ' }}</span>
-          </p>
-        </div>
+        <VideoButtons v-if="upload.length > 1" @prev="selectPrev" @next="selectNext" />
       </div>
 
       <div v-if="upload.length > 1" class="table-scroll-x">
