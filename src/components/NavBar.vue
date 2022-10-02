@@ -8,6 +8,9 @@
       </div>
       <img @click="onHamburgerClick" ref="hamburger" src="icons/bars.svg" class="hamburger" alt="">
       <div class="nav-bar__items" :class="{'dropdown': showDropdown}">
+        <div class="nav-bar__items__link">
+          <a href="https://docs.google.com/spreadsheets/d/1a29YOR_nIMIFddnmBEm3yQW-2lBIMUqtfEFCGpSlVK8/edit?usp=sharing" target="_blank">Requests</a>
+        </div>
         <div v-if="user.isAdmin" class="nav-bar__items__link">
           <router-link :to="{ name: 'upload' }">Upload</router-link>
         </div>
