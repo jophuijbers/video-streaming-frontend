@@ -24,7 +24,7 @@
         <VideoButtons v-if="upload.length > 1" @prev="selectPrev" @next="selectNext" />
       </div>
 
-      <div v-if="upload.length > 1" class="table-scroll-x">
+      <div v-if="upload.length > 1" :key="upload.id" class="table-scroll-x">
         <table class="mt-1">
           <tr>
             <th class="grow text-lg">{{ upload.name }}</th>
@@ -51,6 +51,7 @@ import {FETCH_UPLOAD} from "@/store/actions.type";
 import {DELETE_UPLOAD} from "../store/actions.type";
 import VideoButtons from "../components/VideoButtons";
 import VideoPlayer from "../components/VideoPlayer";
+import {MARK_AS_WATCHED} from "../store/mutations.type";
 
 export default {
   name: "Watch",
@@ -64,11 +65,12 @@ export default {
   async created() {
     this.isLoading = true
     await this.$store.dispatch(FETCH_UPLOAD, this.$route.query.v)
-    this.current = this.upload.videos[0]
+    this.selectVideo(this.upload.videos[0])
     this.isLoading = false
   },
   methods: {
     selectVideo(video) {
+      this.$store.commit(MARK_AS_WATCHED, video.id)
       this.current = video
       window.scrollTo(0,0)
     },
