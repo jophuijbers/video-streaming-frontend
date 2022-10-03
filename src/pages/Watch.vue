@@ -2,7 +2,7 @@
   <div>
     <div v-if="!isLoading" class="watch">
 
-      <VideoPlayer :video-path="current.path" :autoplay="autoplay" @next="selectNext" />
+      <VideoPlayer :video-path="videoPath" :autoplay="autoplay" @next="selectNext" />
 
       <div class="info">
         <div class="row">
@@ -46,6 +46,7 @@
 
 <script>
 import {mapGetters} from "vuex";
+import {getToken} from "../services/local_storage.service";
 import {FETCH_UPLOAD} from "@/store/actions.type";
 import {DELETE_UPLOAD} from "../store/actions.type";
 import VideoButtons from "../components/VideoButtons";
@@ -102,6 +103,9 @@ export default {
     },
     autoplay() {
       return this.upload.length > 1 && (this.currentIndex + 1) < this.upload.length
+    },
+    videoPath() {
+      return this.current.path + `?token=${getToken()}`
     }
   }
 }
