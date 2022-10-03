@@ -474,7 +474,7 @@ table tr .hover:hover {
   color: var(--text-color-dark);
   text-decoration: underline;
 }
-table tr .selected {
+table tr .gray {
   color: var(--text-color-dark);
 }
 table tr:nth-child(odd) {
